@@ -1,0 +1,85 @@
+<div id="ribbon">
+	<h3>
+		Import order
+		<select class="import-type" ng-change="changeTypeImport()" ng-model="typeImport">
+			<option value="" selected>From Excel</option>
+			<option value="1">From SAP</option>
+		</select>
+		<select class="history-import" ng-change="showHistory()" ng-model="hitoryItem" ng-show="!checkSAP">
+			<option ng-repeat="item in histories" value="{{item.import_id}}">{{item.createTime|date:'medium'}}</option>
+		</select>
+		<select class="history-import" ng-change="showHistorySAP()" ng-model="historySAP" ng-show="checkSAP">
+			<option ng-repeat="item in historiesSAP" value="{{item.import_sap_id}}">{{item.created_time|date:'medium'}}</option>
+		</select>
+	</h3>
+</div>
+<div id="input_content" ng-show="!checkSAP">
+	<div class="import-content">
+		<div class="col-md-3"></div>
+		<div class="col-md-6" ng-show="is_offline">
+			<div class="col-sm-6">
+				<label for="order_file" class="input_upload_file upload_document">File</label>
+				<input type="file" name="orderFile" id="order_file" class="upload" ng-model='file' base-sixty-four-input/>
+			</div>
+			<div class="col-sm-6">
+				<button class="btn btn_upload" ng-click="uploadfile()">Import Order</button>
+			</div>
+		</div>
+		<div class="col-md-3"></div>
+	</div>
+</div>
+<div id="input_content" ng-show="checkSAP">
+	<div class="import-content">
+		<div class="col-md-3"></div>
+		<div class="col-md-6">
+			<span>Total : {{countSuccess+countFail}} | </span>
+			<span> Success : {{countSuccess}} | </span>
+			<span>Fail : {{countFail}}</span>
+		</div>
+		<div class="col-md-3"></div>
+	</div>
+</div>
+<div id="table_content">
+	<div class="table_box">
+		<div class="col-sm-12">
+			<table ng-show="isShow1" id="import_order_datatable" class="table table-striped table-bordered" width="100%" datatable="" dt-options="dtOptions" dt-columns="dtColumns" dt-instance="dtInstance">
+			<div>
+				<img  ng-show="isShow2" src="assets/img/icon/loading.gif" alt="">
+			</div>
+		</div>
+	</div>
+</div>
+<div class="modal fade" id="chooseSheet" tabindex="-1" role="dialog">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+		  	<div class="modal-header">
+		    	<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		    	<h4 class="modal-title">Edit order position</h4>
+		  	</div>
+		  	<div class="modal-body">
+		  		<div class="position-content">
+				</div>
+			</div>
+			<div class="modal-footer">
+				<div class="row">
+				  	<div class="col-md-4">
+				  		<button type="button" class="btn btn_custom pull-left">Delete Position <i class="fa fa-trash"></i></button>
+				  	</div>
+				  	<div class="col-md-4 col-md-offset-4">
+		    			<button type="button" class="btn btn_save pull-right">Save</button>
+				  	</div>
+				</div>
+		  	</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+	jQuery(function($) {
+	    $('input[type="file"]').change(function() {
+		    if ($(this).val()) {
+		        var filename = $(this).val();
+		        $('.input_upload_file').html(filename);
+			}
+	  	});
+	});
+</script>

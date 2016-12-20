@@ -1,0 +1,12 @@
+/assets/js/app.constant.js
+WEB-INF
+/fileUpload/importorder/*
+/fileUpload/order/*
+/fileUpload/productItem/*
+/fileUpload/productSegment/*
+/fileUpload/inspectionReport/*
+/fileUpload/images/*
+/fileUpload/sap/*
+/log/*
+/templates/excel.xls
+/templates/*

@@ -1,0 +1,60 @@
+<div id="ribbon">
+	<h3>To Do</h3>
+	<br>
+</div>
+<div id="input_content">
+	<div class="add-content">
+		<div class="col-md-5">
+			<div class="row">
+				<div class="col-sm-12">
+					<div class="form-row">
+						<input type="text" ng-model="todoList.english_name" name="" id="english_name" required ng-model-options="{allowInvalid: true}">
+						<label class="input-label">English Name</label>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-12">
+					<label>Active</label>
+					<label class="radio-inline">
+						<label class="check-box"><input type="checkbox" ng-model="todoList.active" ng-change="changeActive(todoList.active)"></label>
+					</label>
+				</div>
+			</div>
+			<div class="row" ng-if="checkShow">
+				<div class="col-sm-5"></div>
+				<div class="col-sm-7" ng-show="is_offline">
+					<br>
+					<br>
+					<button type="button" class="btn btn_save" ng-click="saveTodo()">Save</button>
+					<button type="button" class="btn btn_reset" ng-click="reset()">Reset</button>
+				</div>
+				<div class="col-sm-6"></div>
+			</div>
+		</div>
+		<div class="col-md-7"></div>
+	</div>
+</div>
+<div id="table_content">
+	<div class="table_box">
+		<div class="col-sm-12">
+			<h3 class="title_table">
+				To Do List
+			</h3>
+			<table id="brand_datatable" class="table table-striped table-bordered" width="100%" datatable="" dt-options="dtOptions" dt-columns="dtColumns" dt-instance="dtInstance">
+				<thead>
+					<tr class="filter-group">
+					  	<th>Name</th>
+					  	<th></th>
+					  	<th></th>  	
+			    	</tr>
+					<tr>
+					  	<th>Name</th>
+					  	<th>Status</th>
+					  	<th></th> 
+					</tr>
+				</thead>
+			</table>
+		</div>
+	</div>
+</div>
